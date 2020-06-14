@@ -21,13 +21,17 @@ export default class ItemBoard extends Component {
 
     handleItemRemove = (e) => {
         let items = this.state.itemsList;
-        let filteredItems = items.filter(el => el.itemTitle !== e.currentTarget.value)
+        let filteredItems = items.filter(el => el.itemTitle + el.dateCreated !== e.currentTarget.value)
         this.setState({itemsList: filteredItems});
     };
 
     render(){
         const listItem = this.state.itemsList.map(item => 
-            <Item item={item} removeItem={this.handleItemRemove} />
+            <Item 
+                key={item.itemTitle + item.dateCreated} 
+                item={item} 
+                removeItem={this.handleItemRemove} 
+            />
         );
         
         return(

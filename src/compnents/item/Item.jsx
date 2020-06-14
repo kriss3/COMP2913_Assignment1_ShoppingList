@@ -10,10 +10,9 @@ export default class Item extends Component {
         return(
             <>
                 <li 
-                    key={item.itemTitle} //no matter what I set here getting an error 
-                    style={{width: 400, display:'inline-block', padding: 20}}>
-                        {item.itemTitle} - {item.dateCreated}
-                {/* <Button value={x.itemTitle} onClick={this.handleItemRemove}>Delete</Button> */}
+                    style={{width: 400, display:'inline-block', padding: 20}}
+                >
+                    {item.itemTitle} - {item.dateCreated}
                 </li>
                 <Button
                     style={{display: 'inline-block'}}
@@ -21,7 +20,7 @@ export default class Item extends Component {
                     color="secondary"
                     startIcon={<DeleteIcon/>}
                     onClick={this.props.removeItem}
-                    value={item.itemTitle}
+                    value={item.itemTitle + item.dateCreated}
                 >
                     Delete
                 </Button>
