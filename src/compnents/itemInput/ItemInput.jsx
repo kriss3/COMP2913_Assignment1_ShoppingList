@@ -24,7 +24,7 @@ export default class ItemInput extends Component {
 
         let newItem = {
           itemTitle: this.state.itemTitle, 
-          dateCreated: new Date().toLocaleTimeString(),
+          dateCreated: new Date(),
         }
         this.props.createItem(newItem);
         this.setState({itemTitle: ''});

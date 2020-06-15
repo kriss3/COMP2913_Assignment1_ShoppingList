@@ -12,7 +12,7 @@ export default class Item extends Component {
                 <li 
                     style={{width: 400, display:'inline-block', padding: 20}}
                 >
-                    {item.itemTitle} - {item.dateCreated}
+                    {item.itemTitle} - {item.dateCreated.toLocaleString()}
                 </li>
                 <Button
                     style={{display: 'inline-block'}}
