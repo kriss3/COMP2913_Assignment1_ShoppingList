@@ -9,7 +9,7 @@ export default class ItemBoard extends Component {
         super(props);
         this.state = {
             itemsList: [],
-            sort: 10,
+            sort: 'select',
             order:false
         }
     };
@@ -47,7 +47,9 @@ export default class ItemBoard extends Component {
             });
             this.setState({itemsList: items});
         } else if (sortOrder === 'Date') {
-            alert('Sorting by Date');
+            const Moment = require('moment');
+            const sortedArray  = items.sort((a,b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYY'))
+            this.setState({itemsList: sortedArray});
         }
     };
 
@@ -63,6 +65,7 @@ export default class ItemBoard extends Component {
         
         return(
             <>
+                {this.state.itemsList.length > 1 && this.state.itemsList ?
                 <div>
                 <InputLabel style={{display:'inline', margin: 20}} shrink id="demo-simple-select-placeholder-label-label">
                     Sort:
@@ -73,7 +76,7 @@ export default class ItemBoard extends Component {
                 value={this.state.sort}
                 onChange={this.handleSortChange}
                 >
-                <MenuItem value={10} disabled={true}>Select</MenuItem>
+                <MenuItem value='select' disabled={true}>Select</MenuItem>
                 <MenuItem value='Name'>Name</MenuItem>
                 <MenuItem value='Date'>Date</MenuItem>
                 </Select>
@@ -87,8 +90,7 @@ export default class ItemBoard extends Component {
                     inputProps={{ 'aria-label': 'primary checkbox' }}
                 />
                 
-                </div>
-                
+                </div> : '' }
                 
                 <ul>
                     {listItem}
