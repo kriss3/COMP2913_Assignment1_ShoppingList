@@ -15,8 +15,8 @@ export default class ItemBoard extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        if (prevProps.item.itemTitle !== this.props.item.itemTitle) {
-            const { item } = this.props;
+        const { item }  = this.props;
+        if (prevProps.item.itemTitle + prevProps.item.dateCreated !== item.itemTitle + item.dateCreated) {
             let currentList = this.state.itemsList
             if(item.itemTitle !== ''){
                 this.setState({itemsList: [...currentList, item]});
